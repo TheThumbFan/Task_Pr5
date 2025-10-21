@@ -14,10 +14,10 @@ class PasswordGenerator:
         elif self.level == "Складний":
             chars = string.ascii_letters + string.digits + "!@#$%^&*"
         else:
-            raise ValueError("Рівень має бути: Легкий, Середній або Складний"
+            raise ValueError("Рівень має бути: Легкий, Середній або Складний")
 
         return ''.join(random.choice(chars) for _ in range(self.length))
-                             
+
 # Демонстрація
 if __name__ == "__main__":
     gen = PasswordGenerator(level="Середній", length=12)
