@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Run Task5
+      - name: Run Task5.py
         run: python Task5.py
 
   build:
