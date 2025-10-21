@@ -1,0 +1,31 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run script
+        run: python task9_github/workbook/task9.py
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - run: echo "Build step (імітація)"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.ref == 'refs/heads/main'
+    environment: staging
+    steps:
+      - run: echo "Deploying with token ${{ secrets.DEPLOY_TOKEN }}"
