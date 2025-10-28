@@ -1,1 +1,33 @@
-
+openapi: 3.0.0
+info:
+  title: Password Generator API
+  version: 1.0.0
+paths:
+  /generate:
+    get:
+      summary: Генерує пароль
+      parameters:
+        - in: query
+          name: level
+          schema:
+            type: string
+            enum: [Легкий, Середній, Складний]
+          required: true
+          description: Рівень складності паролю
+        - in: query
+          name: length
+          schema:
+            type: integer
+            default: 10
+          required: false
+          description: Довжина паролю
+      responses:
+        '200':
+          description: Успішна генерація паролю
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  password:
+                    type: string
